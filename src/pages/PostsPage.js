@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 // Bring in the asynchronous fetchPosts action:
-import { fetchPosts } from '../actions/postsAction';
+import { fetchPosts } from '../actions/postsActions';
 import { Post } from '../components/Post';
 
 // After adding connect, Redux state is now in the props of the component:
-const PostsPage = ({ loading, posts, hasErrors }) =>
+const PostsPage = ({ dispatch, loading, posts, hasErrors }) =>
 {
     useEffect(() => {
         dispatchEvent(fetchPosts());
@@ -35,5 +35,4 @@ const mapStateToProps = state => ({
 });
 
 // Connect Redux to React:
-export default PostsPage;
 export default connect(mapStateToProps)(PostsPage);
