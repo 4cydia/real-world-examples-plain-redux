@@ -9,7 +9,7 @@ import { Post } from '../components/Post';
 const PostsPage = ({ dispatch, loading, posts, hasErrors }) =>
 {
     useEffect(() => {
-        dispatchEvent(fetchPosts());
+        dispatch(fetchPosts());
     }, [dispatch]);
 
     // Show loading, error, or success state:
