@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 // Bring in the asynchronous fetchPosts action:
 import { fetchPosts } from '../actions/postsAction';
+import { Post } from '../components/Post';
 
 // After adding connect, Redux state is now in the props of the component:
 const PostsPage = ({ loading, posts, hasErrors }) =>
@@ -11,9 +12,17 @@ const PostsPage = ({ loading, posts, hasErrors }) =>
         dispatchEvent(fetchPosts());
     }, [dispatch]);
 
+    // Show loading, error, or success state:
+    const renderPosts = () => {
+        if (loading) return <p>Loading posts...</p>;
+        if (hasErrors) return <p>Unable to display posts.</p>
+        return posts.map(post => <Post key={post.id} post={post} />);
+    };
+
     return (
         <section>
             <h1>Posts</h1>
+            {renderPosts()}
         </section>
     );
 };
